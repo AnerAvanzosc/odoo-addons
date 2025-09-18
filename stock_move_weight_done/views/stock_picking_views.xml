@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="picking_form_inherit_weight_view" model="ir.ui.view">
+        <field name="name">stock.picking.form.inherit.weight.view</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='move_ids_without_package']/*[self::list or self::tree]/field[@name='quantity' or @name='product_uom_qty']"
+                position="after">
+                <field name="validated_weight" widget="boolean_button" options='{"terminology": "validated"}'/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="move_form_inherit_weight_view" model="ir.ui.view">
+        <field name="name">stock.move.form.inherit.weight.view</field>
+        <field name="model">stock.move</field>
+        <field name="inherit_id" ref="stock.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_uom_qty']" position="after">
+                <field name="validated_weight" widget="boolean_button" options='{"terminology": "validated"}'/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="move_tree_inherit_weight_view" model="ir.ui.view">
+        <field name="name">stock.move.tree.inherit.weight.view</field>
+        <field name="model">stock.move</field>
+        <field name="inherit_id" ref="stock.view_move_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_uom_qty']" position="after">
+                <field name="validated_weight" widget="boolean_button"/>
+                <field name="weight_validated_by"/>
+                <field name="weight_validated_day"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
+
